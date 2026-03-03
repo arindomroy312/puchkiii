@@ -10,69 +10,97 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
-
-html, body{
+html,body{
   margin:0;
   padding:0;
   background:black;
   color:white;
   font-family:'Cormorant Garamond', serif;
-  width:100%;
   overflow-x:hidden;
 }
 
-/* ===== Sparkle ===== */
-.sparkle{
+/* ===== INTRO SCREEN ===== */
+.intro{
   position:fixed;
-  pointer-events:none;
-  font-size:12px;
-  animation:fadeSpark 0.7s forwards;
-}
-@keyframes fadeSpark{
-  0%{opacity:1; transform:translateY(0);}
-  100%{opacity:0; transform:translateY(-15px);}
+  inset:0;
+  background:radial-gradient(circle,#3b0000 0%,#000 70%);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  z-index:9999;
+  transition:opacity 1s ease;
 }
 
-/* ===== Hero ===== */
-.hero{
+.intro h1{
+  font-size:clamp(2rem,5vw,3rem);
+  color:#ffd700;
+  margin-bottom:20px;
+}
+
+.intro p{
+  font-size:clamp(1rem,2vw,1.3rem);
+  margin-bottom:30px;
+  color:#fff0f5;
+}
+
+.start-btn{
+  padding:18px 50px;
+  font-size:1.2rem;
+  background:linear-gradient(45deg,#ff4d6d,#ffd700,#ff85a1);
+  border:none;
+  border-radius:40px;
+  cursor:pointer;
+  font-weight:bold;
+  color:#3b0000;
+  box-shadow:0 0 30px rgba(255,105,180,0.8);
+  transition:0.3s;
+}
+.start-btn:hover{
+  transform:scale(1.1);
+}
+
+.fade-out{
+  opacity:0;
+  pointer-events:none;
+}
+
+/* ===== HERO + SECTIONS ===== */
+.hero,.section{
   min-height:100dvh;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
-  padding:20px;
+  padding:60px 20px;
+}
+
+.hero{
   background:radial-gradient(circle,#3b0000 0%,#000 60%);
 }
 
 .hero h1{
+  font-size:clamp(2.5rem,6vw,5.5rem);
   margin:10px 0;
-  font-size: clamp(2.5rem, 6vw, 5.5rem);
 }
 
 .hero p{
-  font-size: clamp(1rem, 2vw, 1.6rem);
+  font-size:clamp(1rem,2vw,1.6rem);
   margin-top:20px;
 }
 
-/* ===== Sections ===== */
 .section{
-  min-height:100dvh;
-  padding:60px 20px;
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
   background:linear-gradient(to bottom,#000,#1a0000,#000);
 }
 
 .section h2{
-  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+  font-size:clamp(1.8rem,4vw,3rem);
   margin-bottom:30px;
 }
 
-/* ===== Photo ===== */
+/* PHOTO */
 .photo{
   width:300px;
   max-width:90%;
@@ -89,7 +117,7 @@ html, body{
   object-fit:cover;
 }
 
-/* ===== Floating Boxes ===== */
+/* FLOATING BOXES */
 .floating-container{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -111,38 +139,22 @@ html, body{
   50%{transform:translateY(-10px);}
 }
 
-/* ===== Button ===== */
-button{
+/* MAIN BUTTON */
+.main-btn{
   padding:22px 60px;
-  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-size:clamp(1.2rem,2vw,1.8rem);
   font-weight:bold;
-  background:linear-gradient(45deg,#ff4d6d,#ffd700,#ff85a1,#ffd700);
-  background-size:300% 300%;
+  background:linear-gradient(45deg,#ff4d6d,#ffd700,#ff85a1);
   border:none;
   color:#3b0000;
   border-radius:60px;
   cursor:pointer;
-  transition:0.4s;
-  box-shadow:0 0 45px rgba(255,105,180,0.9);
-  animation:gradientMove 5s ease infinite, pulse 2s infinite;
-  margin-top:20px;
+  box-shadow:0 0 40px rgba(255,105,180,0.9);
+  transition:0.3s;
 }
+.main-btn:hover{transform:scale(1.1);}
 
-button:hover{ transform:scale(1.1); }
-
-@keyframes gradientMove{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
-}
-
-@keyframes pulse{
-  0%{box-shadow:0 0 35px rgba(255,105,180,0.8);}
-  50%{box-shadow:0 0 65px rgba(255,20,147,1);}
-  100%{box-shadow:0 0 35px rgba(255,105,180,0.8);}
-}
-
-/* ===== Letter ===== */
+/* LETTER */
 .letter-container{
   max-width:800px;
   width:95%;
@@ -153,19 +165,13 @@ button:hover{ transform:scale(1.1); }
   color:#5a0000;
   font-family:'Dancing Script',cursive;
   box-shadow:0 0 60px rgba(255,105,180,0.7);
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-size:clamp(1.1rem,2vw,1.5rem);
   line-height:1.8;
-  animation:fadeIn 1s ease forwards;
-}
-
-@keyframes fadeIn{
-  from{opacity:0; transform:scale(0.95);}
-  to{opacity:1; transform:scale(1);}
 }
 
 .hidden{display:none;}
 
-/* ===== Popup ===== */
+/* POPUP */
 .popup{
   position:fixed;
   top:50%;
@@ -181,14 +187,20 @@ button:hover{ transform:scale(1.1); }
   width:90%;
   max-width:400px;
 }
-
 </style>
 </head>
 
 <body>
 
-<audio id="bgMusic" preload="auto" loop>
-  <source src="music.mp3" type="audio/mpeg">
+<!-- INTRO -->
+<div id="introScreen" class="intro">
+<h1>Before we begin our forever… 💖</h1>
+<p>Let the music play and feel what my heart feels.</p>
+<button class="start-btn" onclick="startExperience()">Tap to Begin Our Story 🎵</button>
+</div>
+
+<audio id="bgMusic" loop>
+<source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <!-- HERO -->
@@ -229,33 +241,24 @@ Before you, I existed. After you came into my life, I began to live.
 <h2 style="color:#8B0000;">No Matter What Happens…</h2>
 <h1 style="color:#ffd700;">It Has Always Been You.</h1>
 
-<button onclick="toggleLetter()" id="heartBtn">READ MY HEART 💖</button>
+<button class="main-btn" onclick="toggleLetter()" id="heartBtn">READ MY HEART 💖</button>
 
 <div id="letterBox" class="hidden letter-container">
 
-<p style="font-size:clamp(1.5rem,3vw,2rem); margin-bottom:20px;">
-PUCHKI,
-</p>
+<p style="font-size:clamp(1.5rem,3vw,2rem);">PUCHKI,</p>
 
-<p>I am not asking for a chapter.</p>
-<p>I am asking for the entire story.</p>
-
-<p>I want ordinary mornings with you.</p>
-<p>I want difficult days with you.</p>
+<p>I am not asking for a chapter. I am asking for the entire story.</p>
+<p>I want ordinary mornings with you. I want difficult days with you.</p>
 <p>I want dreams, risks, failures, victories — with you.</p>
-
-<p>I want to grow beside you.</p>
-<p>I want to age beside you.</p>
+<p>I want to grow beside you. I want to age beside you.</p>
 <p>I want to look back one day and say — we built this life together.</p>
 
-<p>I promise loyalty.</p>
-<p>I promise effort.</p>
-<p>I promise patience.</p>
+<p>I promise loyalty. I promise effort. I promise patience.</p>
 <p>I promise choosing you every single day.</p>
 
 <br>
 
-<p style="font-size:clamp(1.2rem,2.5vw,1.8rem); margin-top:20px;">
+<p style="font-size:clamp(1.2rem,2.5vw,1.8rem);">
 Will you give me a chance to build a future with you?
 </p>
 
@@ -263,32 +266,26 @@ Will you give me a chance to build a future with you?
 Will you ever give me a second chance?
 </p>
 
-<p style="font-size:clamp(1.1rem,2.2vw,1.6rem);">
-I'll always wait for your reply.  
-I'll always look for your presence in my life.
+<p>
+I'll always wait for your reply. I'll always look for your presence in my life.
 </p>
 
 <br>
 
-<p style="font-size:clamp(1.5rem,3vw,2rem); margin-top:30px;">
+<p style="font-size:clamp(1.5rem,3vw,2rem);">
 I LOVE YOU PUCHKI... 💖
 </p>
 
 <br>
 
-<p style="margin-top:25px;">
+<p>
 Now… before my heart melts completely and runs into your arms,
 press the <strong>“Close My Heart 💌”</strong> button.
-</p>
-
-<p>
 Not to close it forever —
-just to keep it safe,
-warm,
-and cozy in your hands. 💖
+just to keep it safe, warm, and cozy in your hands. 💖
 </p>
 
-<p style="margin-top:10px; font-size:0.95rem;">
+<p style="font-size:0.95rem;">
 (Trust me… something sweet is waiting after you close it 😉)
 </p>
 
@@ -300,38 +297,20 @@ and cozy in your hands. 💖
 <h2 style="color:#d63384;">You Are My Miracle 💖</h2>
 <p style="color:#8B0000;">Thank you for being with me.</p>
 <p style="color:#8B0000;">I am grateful for you — always.</p>
-<button onclick="closePopup()" style="margin-top:20px;">Close 💕</button>
+<button class="main-btn" onclick="closePopup()">Close 💕</button>
 </div>
 
 <script>
 
-/* Mobile Safe Music */
-const music = document.getElementById("bgMusic");
-let musicStarted = false;
+const music=document.getElementById("bgMusic");
 
-function startMusic() {
-  if (!musicStarted) {
-    music.volume = 0.6;
-    music.play().catch(()=>{});
-    musicStarted = true;
-  }
+function startExperience(){
+  music.volume=0.7;
+  music.play().catch(()=>{});
+  document.getElementById("introScreen").classList.add("fade-out");
+  setTimeout(()=>{ document.getElementById("introScreen").style.display="none"; },1000);
 }
 
-document.addEventListener("touchstart", startMusic, { once:true });
-document.addEventListener("click", startMusic, { once:true });
-
-/* Sparkle */
-document.addEventListener("mousemove", function(e){
-  const sparkle=document.createElement("div");
-  sparkle.className="sparkle";
-  sparkle.innerHTML="✨";
-  sparkle.style.left=e.clientX+"px";
-  sparkle.style.top=e.clientY+"px";
-  document.body.appendChild(sparkle);
-  setTimeout(()=>sparkle.remove(),700);
-});
-
-/* Letter Toggle */
 function toggleLetter(){
   const box=document.getElementById("letterBox");
   const btn=document.getElementById("heartBtn");
@@ -343,7 +322,7 @@ function toggleLetter(){
     box.classList.add("hidden");
     btn.innerText="READ MY HEART 💖";
     document.getElementById("gratitudePopup").classList.remove("hidden");
-    confetti({particleCount:150, spread:70, origin:{y:0.6}});
+    confetti({particleCount:150,spread:70,origin:{y:0.6}});
   }
 }
 
@@ -355,5 +334,3 @@ function closePopup(){
 
 </body>
 </html>
-
-
